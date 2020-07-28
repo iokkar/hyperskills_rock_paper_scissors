@@ -1,8 +1,7 @@
-# 2 этап 27/07
+# 2 этап 28/07
 
-#Сегодня hyperskill лежит, написал задание по памяти, возможно не точно
-#в таком виде работае, нужно уточнять 
-# задание и условия когда сайт поднимут
+# работает
+# тест пройден
 
 import random
 
@@ -13,11 +12,11 @@ pl_ch = input() #'scissors'
 
 def state():
     if pl_ch == cmp_ch:
-        print("Draw")
+        print("There is a draw ({cmp_ch})")
     elif win[pl_ch] == cmp_ch:
-        print('Player win')
+        print(f'Well done. Computer chose {cmp_ch} and failed')
     elif win[cmp_ch] == pl_ch:
-        print('Computer win')
+        print(f'Sorry, but computer chose {cmp_ch}')
 
 state()
     
