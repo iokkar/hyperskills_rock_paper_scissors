@@ -39,27 +39,17 @@ check_name()
 check()
 
 # срезы
+# 03.08
+# считывание строк и добавление их в словарь
 
 str = ('Tim 500','Dim 0')
 name = 'Nina'
 names = {}
-print(str[0][:str[0].rfind(' ')])
-print(str[0][str[0].index(' ')+1:])
-b = int(str[0][str[0].index(' ')+1:])
-a = str[0][:str[0].rfind(' ')+1].replace(' ','')
-#for i in str:
- #   names[i[]]
-names[a] = b
-
-
-str = ('Tim 500','Dim 0')
-name = 'Nina'
-names = {}
-#print(str[0][:str[0].rfind(' ')])
-#print(str[0][str[0].index(' ')+1:])
-#b = int(str[0][str[0].index(' ')+1:])
-#a = str[0][:str[0].rfind(' ')+1].replace(' ','')
+a = ''
+b = 0
 for i in str:
     print(i[:i.index(' ')])
+    a = i[:i.index(' ')]
     print(i[i.index(' ')+1:])
-#names[a] = b
+    b = i[i.index(' ')+1:]
+    names[i[:i.index(' ')]] = int(i[i.index(' ')+1:])
