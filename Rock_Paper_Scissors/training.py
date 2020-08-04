@@ -27,3 +27,25 @@ while pl_ch != '!exit':
 else:
     print('Bye!')
 
+
+# проверка !exit !rating - простая схема
+
+pl_ch = ''
+name = 0
+def check_input():
+    global pl_ch, name
+    if pl_ch != '!rating' and pl_ch != '!exit':
+        name += 1
+    else:
+        return
+def rating():
+    if pl_ch == '!rating':
+        print(pl_ch, name)
+
+while pl_ch != '!exit':
+    pl_ch = input()
+    check_input()
+    rating()
+else:
+    print('By!')
+

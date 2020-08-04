@@ -1,24 +1,36 @@
 # development in progress 
-# 03/08
+# 04/08
+
 # добавлено поиск в файле и вывод очков
 # добавляет нового польльзователя, но выводит неправильно, нужна проверка
 # добавил считывание из файла в словарь
 # провека и добавление нового игрока в словарь, а не в файл
 
+# 1. Работает c подсчетом очков!
+
+#
+
 # нужно добавить:
-# добавление нового игрока в файл
-# не нужно добавлять нового игрока в файл, пока добавляем его в словарь с игроками!!!
+# подсчет очков после каждого раунда
+# добавление очков конкретному игроку в 
+# добавить саму игру - с раном выборок копьютера
 # изменение очков для игрока после каждого раунда игры
 
 
 # проверка добавленных игроков в словаре
 # 
 
+import random
+
 pl_ch = ''
 pl_name = input('Enter your name: ')
 print(f'Hello {pl_name}')
 pl_names = {}
 
+comp_choose = ['paper', 'rock', 'scissors']
+cmp_ch = random.choice(comp_choose)
+win = dict(rock='scissors', scissors='paper', paper='rock')
+input_words = ('paper', 'rock', 'scissors', '!exit', '!rating')
 
 # есть проблема с добавлением 
 def check_name(): # проверка имени перебором
@@ -59,17 +71,46 @@ def read_names(): # считываю имена из файла в словар�
             pl_names[i[:i.index(' ')]] = int(i[i.index(' ')+1:])
     f_names.close()
 
+# добавить подсчет очков!
+def state():
+    global pl_ch
+    if pl_ch != '!exit' and pl_ch != '!rating':
+        if pl_ch == cmp_ch:
+            print(f"There is a draw ({cmp_ch})")
+            pl_names[pl_name] += 50
+        elif win[pl_ch] == cmp_ch:
+            print(f'Well done. Computer chose {cmp_ch} and failed')
+            pl_names[pl_name] += 100
+        elif win[cmp_ch] == pl_ch:
+            print(f'Sorry, but computer chose {cmp_ch}')
+    else:
+        return
+
+def check_in():
+    global pl_ch, cmp_ch
+    while True:
+        pl_ch = input() #дублируется в main
+        if pl_ch not in input_words:
+            print('Invalid input')
+            return False
+        else:
+            cmp_ch = random.choice(comp_choose)
+            return True
+            #state()
+
 read_names()
 check_name()
 while pl_ch != '!exit':
-    pl_ch = input()
-    if pl_ch == '!rating':
-        f_rating()
-        #find_rating()
-    #check_in()
-    #state()
+    #pl_ch = input()
+    if check_in():
+        if pl_ch == '!rating':
+            f_rating()
+            find_rating()
+        state() # перенес в check_in()
+    else:
+        continue    
 else:
-    for i in pl_names: # тест 
-        print(i, pl_names[i])
+    #for i in pl_names: # тест 
+    #    print(i, pl_names[i])
     print('Bye!')
 
