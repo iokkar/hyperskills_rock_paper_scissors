@@ -1,4 +1,7 @@
-# 4 этап  закончен 05/08
+# development in progress 
+# 05/08
+
+# подготовка к проверке
 
 import random
 
